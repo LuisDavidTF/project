@@ -83,8 +83,7 @@ export const productController = {
       console.log('Body:', req.body);
       console.log('Files:', req.files); // Asegúrate de que los archivos están siendo procesados
 
-      const { name, description, price, category_id, sizes } = req.body;
-      const stock = 10; // Suponiendo que el stock inicial es fijo o dinámico
+      const { name, description, price, category_id,stock } = req.body;
       const sellerId = req.session.user.id; // ID del vendedor desde la sesión
 
       const files = req.files;

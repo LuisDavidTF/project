@@ -1,18 +1,30 @@
-
-
 <div class="container my-5">
   <div class="row">
     <div class="col-md-6">
-      <div class="product-gallery">
+      <div class="product-gallery text-center"> <!-- Centrar contenido -->
         <% const images = product.images ? product.images.split(',') : [] %>
         <% if (images.length > 0) { %>
-          <img src="<%= images[0] %>" class="img-fluid mb-3" alt="<%= product.name %>">
-          <div class="row g-2">
-            <% images.slice(1).forEach(image => { %>
-              <div class="col-3">
-                <img src="<%= image %>" class="img-fluid thumbnail" alt="<%= product.name %>">
-              </div>
-            <% }) %>
+          <!-- Carrusel para varias imágenes -->
+          <div id="productCarousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 600px; margin: 0 auto;">
+            <div class="carousel-inner">
+              <% images.forEach((image, index) => { %>
+                <div class="carousel-item <%= index === 0 ? 'active' : '' %>">
+                  <!-- Enlace para el zoom -->
+                  <a href="<%= image %>" data-lightbox="product-images" data-title="<%= product.name %>">
+                    <img src="<%= image %>" class="d-block mx-auto img-fluid" style="max-height: 600px; width: auto; object-fit: contain;" alt="<%= product.name %>">
+                  </a>
+                </div>
+              <% }) %>
+            </div>
+            <!-- Controles del carrusel con color negro -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" style="filter: invert(1);" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" style="filter: invert(1);" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         <% } %>
       </div>
@@ -57,3 +69,7 @@
     </div>
   </div>
 </div>
+
+<!-- Incluir dependencias de Lightbox y Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>

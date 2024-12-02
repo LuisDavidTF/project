@@ -55,8 +55,10 @@
     <div class="row g-4">
       <% products.slice(0, 4).forEach(product => { %>
         <div class="col-md-3">
-          <div class="card product-card">
-            <img src="<%= product.image_url %>" class="card-img-top" alt="<%= product.name %>">
+          <div class="card product-card" style="height: 100%;">
+            <div class="d-flex justify-content-center align-items-center" style="height: 200px; overflow: hidden;">
+              <img src="<%= product.image_url %>" class="card-img-top" alt="<%= product.name %>" style="max-height: 100%; max-width: 100%; object-fit: contain;">
+            </div>
             <div class="card-body">
               <h5 class="card-title"><%= product.name %></h5>
               <p class="card-text">$<%= product.price %></p>
