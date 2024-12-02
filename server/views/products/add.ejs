@@ -1,0 +1,85 @@
+
+
+<div class="container my-5">
+  <div class="form-container">
+    <h2 class="text-center mb-4">Add New Product</h2>
+    
+    <% if (error) { %>
+      <div class="alert alert-danger"><%= error %></div>
+    <% } %>
+
+    <form action="/products/add" method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="name" class="form-label">Product Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+      
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select" id="category" name="category_id" required>
+          <option value="">Select Category</option>
+          <option value="1">Men</option>
+          <option value="2">Women</option>
+          <option value="3">Boys</option>
+          <option value="4">Girls</option>
+        </select>
+      </div>
+      
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+      </div>
+      
+      <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <div class="input-group">
+          <span class="input-group-text">$</span>
+          <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+        </div>
+      </div>
+      
+      <div class="mb-3">
+        <label for="images" class="form-label">Product Images</label>
+        <input type="file" class="form-control" id="images" name="images" multiple accept="image/*" required>
+      </div>
+      
+      <div class="mb-3">
+        <label class="form-label">Available Sizes</label>
+        <div class="row g-3">
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="sizes[]" value="XS" id="size-xs">
+              <label class="form-check-label" for="size-xs">XS</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="sizes[]" value="S" id="size-s">
+              <label class="form-check-label" for="size-s">S</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="sizes[]" value="M" id="size-m">
+              <label class="form-check-label" for="size-m">M</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="sizes[]" value="L" id="size-l">
+              <label class="form-check-label" for="size-l">L</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="sizes[]" value="XL" id="size-xl">
+              <label class="form-check-label" for="size-xl">XL</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <button type="submit" class="btn btn-primary w-100">Add Product</button>
+    </form>
+  </div>
+</div>

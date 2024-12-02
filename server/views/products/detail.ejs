@@ -1,0 +1,59 @@
+
+
+<div class="container my-5">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="product-gallery">
+        <% const images = product.images ? product.images.split(',') : [] %>
+        <% if (images.length > 0) { %>
+          <img src="<%= images[0] %>" class="img-fluid mb-3" alt="<%= product.name %>">
+          <div class="row g-2">
+            <% images.slice(1).forEach(image => { %>
+              <div class="col-3">
+                <img src="<%= image %>" class="img-fluid thumbnail" alt="<%= product.name %>">
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="product-info">
+        <h1 class="mb-3"><%= product.name %></h1>
+        <p class="text-muted">Sold by <%= product.seller_name %></p>
+        <h2 class="text-primary mb-4">$<%= product.price %></h2>
+        <p class="mb-4"><%= product.description %></p>
+        
+        <form action="/cart/add" method="POST">
+          <input type="hidden" name="productId" value="<%= product.id %>">
+          <div class="mb-3">
+            <label class="form-label">Size</label>
+            <select class="form-select" name="size" required>
+              <option value="">Select Size</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Color</label>
+            <select class="form-select" name="color" required>
+              <option value="">Select Color</option>
+              <option value="Black">Black</option>
+              <option value="White">White</option>
+              <option value="Blue">Blue</option>
+              <option value="Red">Red</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Quantity</label>
+            <input type="number" class="form-control" name="quantity" value="1" min="1" max="10" required>
+          </div>
+          <button type="submit" class="btn btn-primary btn-lg w-100">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
